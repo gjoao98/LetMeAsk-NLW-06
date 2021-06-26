@@ -13,13 +13,13 @@ type AuthContextType = {
 }
 
 
-type AuthContextProvider = {
+type AuthContextDeal = {
     children: ReactNode;
 }
 
 export const AuthContext = createContext({} as AuthContextType);
 
-export function AuthContextProvider(props: AuthContextProvider) {
+export function AuthContextProvider(props: AuthContextDeal) {
     const [user, setUser] = useState<User>();
 
     useEffect(() => {
