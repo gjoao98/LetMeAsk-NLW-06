@@ -23,7 +23,7 @@ export function AdminRoom() {
 
     const roomId = params.id;
 
-    const { questions, title } = useRoom(roomId);
+    const { question, title } = useRoom(roomId);
 
     async function handleSendQuestion(event: FormEvent) {
         event.preventDefault();
@@ -48,7 +48,7 @@ export function AdminRoom() {
 
         await database.ref(`rooms/${roomId}/question`).push(question);
 
-        console.log(questions);
+        console.log(question);
 
         setNewQuestion('');
     }
@@ -68,11 +68,11 @@ export function AdminRoom() {
             <main>
                 <div className="room-title">
                     <h1>Sala {title}</h1>
-                    {questions.length > 0 && <span>{questions.length} pergunta(s)</span>}
+                    {question.length > 0 && <span>{question.length} pergunta(s)</span>}
                 </div>
 
                 <div className="question-list">
-                    {questions.map(question => {
+                    {question.map(question => {
                         return (
                             <Question
                                 key={question.id}

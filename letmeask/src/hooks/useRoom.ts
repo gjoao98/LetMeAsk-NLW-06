@@ -23,7 +23,7 @@ type QuestionType = {
 }
 
 export function useRoom(roomId: string) {
-    const [questions, setQuestions] = useState<QuestionType[]>([]);
+    const [question, setQuestions] = useState<QuestionType[]>([]);
     const [title, setTitle] = useState('');
 
 
@@ -32,7 +32,7 @@ export function useRoom(roomId: string) {
 
         roomRef.on('value', room => {
             const databaseRoom = room.val();
-            const firebaseQuestions: FirebaseQuestions = databaseRoom.questions ?? {};
+            const firebaseQuestions: FirebaseQuestions = databaseRoom.question ?? {};
 
             const parsedQuestions = Object.entries(firebaseQuestions).map(([key, value]) => {
                 return {
@@ -49,5 +49,5 @@ export function useRoom(roomId: string) {
         })
     }, [roomId]);
 
-    return { questions, title }
+    return { question, title }
 }
